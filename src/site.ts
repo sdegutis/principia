@@ -2,7 +2,7 @@ import 'source-map-support/register';
 import { FileSys, FsFile } from './filesys';
 import { Runtime } from "./runtime";
 
-export class Site {
+export class App {
 
   #filesys;
   #runtime: Runtime | undefined;
@@ -15,7 +15,7 @@ export class Site {
   }
 
   build() {
-    console.log('Building site');
+    console.log('Building app');
     const root = this.#filesys.load();
 
     this.#runtime?.shutdown();

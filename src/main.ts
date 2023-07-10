@@ -2,11 +2,11 @@ import chokidar from 'chokidar';
 import 'dotenv/config';
 import * as path from 'path';
 import 'source-map-support/register';
-import { Site } from './site';
+import { App } from './site';
 
 addTimestampToConsoleMethods();
 
-const site = new Site('app');
+const site = new App('app');
 onFsChanges('app', 100, (path) => site.fileChanged(path));
 
 function onFsChanges(fromPath: string, msTimeout: number, fn: (path: string) => void) {
