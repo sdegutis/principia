@@ -1,5 +1,6 @@
 import mime from "mime";
 import { redirectResponse } from "./helpers";
+import { RouteHandler, RouteInput, RouteOutput } from "./http-server";
 
 export function notFoundPage(input: RouteInput): RouteOutput {
   return {

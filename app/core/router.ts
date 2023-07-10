@@ -1,3 +1,4 @@
+import { RouteHandler } from "./http-server";
 import { makeSitemap } from "./sitemap";
 
 export type RouteMethod = 'GET' | 'POST';

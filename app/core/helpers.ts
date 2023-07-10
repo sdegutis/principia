@@ -1,3 +1,4 @@
+import { RouteOutput } from "./http-server";
 import { renderElement } from "./jsx";
 
 export function htmlResponse(html: JSX.Element): RouteOutput {

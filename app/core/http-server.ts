@@ -2,6 +2,22 @@ import * as http from "http";
 import internal, { pipeline, Readable } from 'stream';
 import { createGzip } from 'zlib';
 
+export interface RouteInput {
+  method: Uppercase<string>;
+  url: URL;
+  headers: http.IncomingHttpHeaders;
+  body: Buffer;
+  cookies: Record<string, string>,
+}
+
+export interface RouteOutput {
+  status?: number;
+  headers?: http.OutgoingHttpHeaders;
+  body?: Buffer;
+}
+
+export type RouteHandler = (input: RouteInput) => RouteOutput | Promise<RouteOutput>;
+
 export const baseUrl = process.env['BASE_URL']!;
 export const isLive = baseUrl.includes('.com');
 
