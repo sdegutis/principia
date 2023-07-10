@@ -6,9 +6,7 @@ let server: ReturnType<typeof startServer> = (persisted['server'] ??= startServe
 server.httpHandler = makeRequestHandler(input => {
   return {
     body: Buffer.from(renderElement(<>
-      <p>
-        <b>Hello</b> world
-      </p>
+      <p><b>Hello</b> world</p>
       <p>You visited <u>{input.url}</u></p>
     </>)),
   };

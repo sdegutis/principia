@@ -19,7 +19,6 @@ export interface RouteOutput {
 export type RouteHandler = (input: RouteInput) => RouteOutput | Promise<RouteOutput>;
 
 export const baseUrl = process.env['BASE_URL']!;
-export const isLive = baseUrl.includes('.com');
 
 export function makeAbsoluteUrl(relativeUrl: string) {
   return new URL(relativeUrl, baseUrl).toString();
