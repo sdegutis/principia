@@ -1,4 +1,5 @@
-import { renderElement } from "./jsx";
+import { makeAbsoluteUrl } from "../core/http-server";
+import { renderElement } from "../core/jsx";
 import { Routeable } from "./router";
 
 export function makeSitemap(routeables: Routeable[]): Routeable {
@@ -18,7 +19,7 @@ export function makeSitemap(routeables: Routeable[]): Routeable {
           {[...routeables]
             .map((routeable) => <>
               <url>{'\n'}
-                <loc>https://www.immaculatalibrary.com{routeable.route}</loc>{'\n'}
+                <loc>{makeAbsoluteUrl(routeable.route)}</loc>{'\n'}
                 {(routeable.meta?.lastModifiedDate) && <>
                   <lastmod>{routeable.meta.lastModifiedDate}</lastmod>{'\n'}
                 </>}

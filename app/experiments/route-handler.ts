@@ -1,5 +1,5 @@
 import mime from "mime";
-import { RouteHandler, RouteInput, RouteOutput } from "./http-server";
+import { RouteHandler, RouteInput, RouteOutput } from "../core/http-server";
 
 export function notFoundPage(input: RouteInput): RouteOutput {
   return {
