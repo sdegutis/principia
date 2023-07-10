@@ -1,5 +1,4 @@
 import mime from "mime";
-import { redirectResponse } from "./helpers";
 import { RouteHandler, RouteInput, RouteOutput } from "./http-server";
 
 export function notFoundPage(input: RouteInput): RouteOutput {
@@ -19,11 +18,11 @@ export function errorPage(input: RouteInput): RouteOutput {
 export function makeRouteHandler(routes: Map<string, RouteHandler>): RouteHandler {
   return async (input: RouteInput): Promise<RouteOutput> => {
     if (input.headers['host'] !== input.url.host) {
-      return redirectResponse(input.url.href);
+      return { status: 302, headers: { 'Location': input.url.href } };
     }
 
     if (input.url.pathname.endsWith('/') && input.url.pathname !== '/') {
-      return redirectResponse(input.url.pathname.slice(0, -1));
+      return { status: 302, headers: { 'Location': input.url.pathname.slice(0, -1) } };
     }
 
     const key = `${input.method} ${input.url.pathname}`;
