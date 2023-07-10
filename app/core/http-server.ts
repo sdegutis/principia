@@ -9,24 +9,24 @@ export function makeAbsoluteUrl(relativeUrl: string) {
   return new URL(relativeUrl, baseUrl).toString();
 }
 
-export function createPersistentServer(port: number) {
-  const persistentServer = {
+export function startServer(port: number) {
+  const handlers = {
     httpHandler: (req: http.IncomingMessage, res: http.ServerResponse) => { res.end(); },
     wsHandler: (req: http.IncomingMessage, socket: internal.Duplex, head: Buffer) => { },
   };
 
   const server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
-    persistentServer.httpHandler(req, res);
+    handlers.httpHandler(req, res);
   });
 
   server.on('upgrade', (req, socket, head) => {
-    persistentServer.wsHandler(req, socket, head);
+    handlers.wsHandler(req, socket, head);
   });
 
   server.listen(port);
   console.log(`Running on http://localhost:${port}`);
 
-  return persistentServer;
+  return handlers;
 }
 
 export function makeRequestHandler(handler: RouteHandler): http.RequestListener {
