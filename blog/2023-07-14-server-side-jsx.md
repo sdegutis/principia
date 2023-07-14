@@ -23,3 +23,17 @@ server.httpHandler = makeRequestHandler(input => {
   };
 });
 ```
+
+When visiting localhost:8080, the output is
+
+```html
+<head></head><p><b>Hello</b> world</p><p>You visited <u>http://localhost:8080/</u></p>
+```
+
+Slightly prettified:
+
+```html
+<head></head>
+<p><b>Hello</b> world</p>
+<p>You visited <u>http://localhost:8080/</u></p>
+```
